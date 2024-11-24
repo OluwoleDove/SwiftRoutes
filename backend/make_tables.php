@@ -1,64 +1,55 @@
 <?php
-// Database connection details
-$host = '127.0.0.1';
-$db = 'swift_routes';
-$user = 'root';
-$pass = '';
+// make_tables.php
 
-$conn = new mysqli($host, $user, $pass, $db);
+require_once 'init_db.php';
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Create 'users' table
+// Create the users table
 $createUsersTable = "
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-";
+)";
 
 if ($conn->query($createUsersTable) === TRUE) {
-    echo "Table 'users' created successfully.\n";
+    echo "Users table created successfully.<br>";
 } else {
-    echo "Error creating 'users' table: " . $conn->error . "\n";
+    echo "Error creating users table: " . $conn->error . "<br>";
 }
 
-// Create 'traffic_reports' table
-$createTrafficReportsTable = "
-CREATE TABLE IF NOT EXISTS traffic_reports (
+// Create the routes table
+$createRoutesTable = "
+CREATE TABLE IF NOT EXISTS routes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    location VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
-    reported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-";
+    start_location VARCHAR(255) NOT NULL,
+    destination VARCHAR(255) NOT NULL,
+    distance INT NOT NULL,  -- in kilometers or miles
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
 
-if ($conn->query($createTrafficReportsTable) === TRUE) {
-    echo "Table 'traffic_reports' created successfully.\n";
+if ($conn->query($createRoutesTable) === TRUE) {
+    echo "Routes table created successfully.<br>";
 } else {
-    echo "Error creating 'traffic_reports' table: " . $conn->error . "\n";
+    echo "Error creating routes table: " . $conn->error . "<br>";
 }
 
-// Create 'rewards' table
+// Create the rewards table
 $createRewardsTable = "
 CREATE TABLE IF NOT EXISTS rewards (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    type VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
-    points INT NOT NULL
-);
-";
+    user_id INT NOT NULL,
+    reward VARCHAR(255) NOT NULL,
+    redeemed BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+)";
 
 if ($conn->query($createRewardsTable) === TRUE) {
-    echo "Table 'rewards' created successfully.\n";
+    echo "Rewards table created successfully.<br>";
 } else {
-    echo "Error creating 'rewards' table: " . $conn->error . "\n";
+    echo "Error creating rewards table: " . $conn->error . "<br>";
 }
 
 $conn->close();

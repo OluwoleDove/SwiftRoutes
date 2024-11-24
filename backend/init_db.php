@@ -1,11 +1,15 @@
 <?php
-$host = '127.0.0.1';
-$db = 'swift_routes';
-$user = 'root';
-$pass = '';
+// init_db.php
 
-$conn = new mysqli($host, $user, $pass, $db);
+$servername = "localhost";  // your database host
+$username = "root";         // your database username
+$password = "";             // your database password
+$dbname = "swift_routes";   // your database name
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

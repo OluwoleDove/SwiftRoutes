@@ -88,55 +88,54 @@ SwiftRoutes positions itself as the solution to modern urban mobility challenges
 
 SwiftRoutes/
 frontend/
-│
+├── public/
+│   ├── index.html
 ├── src/
-│   ├── actions/         # Redux action files
-│   │   ├── userActions.js
-│   │   ├── courseActions.js
-│   │   ├── rewardActions.js
+│   ├── actions/                  # Redux action files
+│   │   ├── routeActions.js       # Actions for handling routes
+│   │   ├── userActions.js        # Actions for user authentication
+│   │   ├── rewardActions.js      # Actions for rewards management
 │   │
-│   ├── reducers/        # Redux reducers
-│   │   ├── userReducer.js
-│   │   ├── courseReducer.js
-│   │   ├── rewardReducer.js
+│   ├── reducers/                 # Redux reducers
+│   │   ├── routeReducer.js       # Handles route-related state
+│   │   ├── userReducer.js        # Handles user authentication state
+│   │   ├── rewardReducer.js      # Handles rewards state
 │   │
-│   ├── components/      # Reusable components
-│   │   ├── Dashboard.js
-│   │   ├── Planner.js
-│   │   ├── Rewards.js
-│   │   ├── FeaturesSection.js
-│   │   ├── PricingSection.js
-│   │   ├── Footer.js
+│   ├── components/               # Reusable components
+│   │   ├── Header.js             # Header with navigation
+│   │   ├── MapComponent.js       # Interactive map
+│   │   ├── RouteList.js          # Displays route details
+│   │   ├── Rewards.js            # Displays user rewards
 │   │
-│   ├── pages/           # Pages
-│   │   ├── HomePage.js
-│   │   ├── LoginPage.js
-│   │   ├── RegisterPage.js
-│   │   ├── CoursePage.js
-│   │   ├── RewardPage.js
-│   │   └── NotFoundPage.js
+│   ├── pages/                    # Main pages
+│   │   ├── HomePage.js           # Homepage with map and search
+│   │   ├── PlannerPage.js        # Trip planning page
+│   │   ├── RewardsPage.js        # Rewards tracking
+│   │   ├── LoginPage.js          # Login and registration
 │   │
-│   ├── styles/          # CSS files
-│   │   ├── App.css
-│   │   ├── Dashboard.css
-│   │   ├── Rewards.css
-│   │
-│   ├── store.js         # Redux store configuration
-│   ├── App.js           # Main app component
-│   ├── index.js         # Entry point
-│   └── utils/           # Utility files for APIs
-│       └── api.js       # Axios instance configuration
-
+│   ├── store.js                  # Redux store setup
+│   ├── App.js                    # Main app component
+│   ├── index.js                  # App entry point
+│   └── styles/                   # Custom styles
+│       ├── App.css
+│       ├── components.css
+│       ├── pages.css
 backend/
-│
 ├── api/
-│   ├── users.php        # Handles user authentication and registration
-│   ├── courses.php      # Fetches and manages course data
-│   ├── rewards.php      # Manages reward system APIs
-│   └── make_tables.php  # Contains SQL for creating all necessary tables
+│   ├── routes.php               # Handles route suggestions
+│   ├── users.php                # User registration and login
+│   ├── rewards.php              # Rewards logic
+│   ├── planner.php              # Trip planning
 │
-└── init_db.php          # Database connection
-
+├── models/                      # Handles database interactions
+│   ├── UserModel.php            # User-related queries
+│   ├── RouteModel.php           # Route-related queries
+│   ├── RewardModel.php          # Reward-related queries
+│
+├── init_db.php                  # Database connection setup
+├── utils/                       # Helper functions
+│   ├── auth.php                 # JWT-based authentication
+│   ├── validators.php           # Input validation
 
 
 php -S localhost:8000 -t api

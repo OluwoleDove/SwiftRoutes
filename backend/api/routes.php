@@ -1,20 +1,14 @@
 <?php
-if ($_SERVER['REQUEST_URI'] === '/api/rewards') {
-    include 'rewards.php';
-    exit();
-}
+// api/routes.php
 
-if (strpos($_SERVER['REQUEST_URI'], '/api/users') === 0) {
-    include 'users.php';
-    exit();
-}
+require_once '../models/RouteModel.php';
 
-if (strpos($_SERVER['REQUEST_URI'], '/api/traffic') === 0) {
-    include 'traffic.php';
-    exit();
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['start']) && isset($_GET['destination'])) {
+    $start = $_GET['start'];
+    $destination = $_GET['destination'];
+    
+    $routes = RouteModel::getRoutes($start, $destination);
+    
+    echo json_encode($routes);
 }
-
-// Default response for undefined routes
-http_response_code(404);
-echo json_encode(["message" => "Route not found"]);
 ?>

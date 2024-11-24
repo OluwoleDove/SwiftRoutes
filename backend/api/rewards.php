@@ -1,34 +1,22 @@
 <?php
-include '../init_db.php';
+// api/rewards.php
 
-// Fetch available rewards
-if ($_SERVER['REQUEST_URI'] === '/api/rewards' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-    $sql = "SELECT * FROM rewards";
-    $result = $conn->query($sql);
-    $rewards = [];
+require_once '../models/RewardModel.php';
 
-    while ($row = $result->fetch_assoc()) {
-        $rewards[] = $row;
-    }
-
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['user_id'])) {
+    $userId = $_GET['user_id'];
+    $rewards = RewardModel::getUserRewards($userId);
     echo json_encode($rewards);
-    exit();
 }
 
-// Add a new reward (Admin-only)
-if ($_SERVER['REQUEST_URI'] === '/api/rewards' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
-    $type = $conn->real_escape_string($data['type']);
-    $description = $conn->real_escape_string($data['description']);
-    $points = (int)$data['points'];
-
-    $sql = "INSERT INTO rewards (type, description, points) VALUES ('$type', '$description', $points)";
-    if ($conn->query($sql) === TRUE) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id']) && isset($_POST['reward'])) {
+    $userId = $_POST['user_id'];
+    $reward = $_POST['reward'];
+    
+    if (RewardModel::addReward($userId, $reward)) {
         echo json_encode(["message" => "Reward added successfully"]);
     } else {
-        echo json_encode(["message" => "Error: " . $conn->error]);
+        echo json_encode(["message" => "Error adding reward"]);
     }
-    $conn->close();
-    exit();
 }
 ?>
