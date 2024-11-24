@@ -1,0 +1,12 @@
+.route-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .route-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 10px;
+  }
+  

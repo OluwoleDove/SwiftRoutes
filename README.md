@@ -87,35 +87,56 @@ SwiftRoutes positions itself as the solution to modern urban mobility challenges
 
 
 SwiftRoutes/
-├── backend/
-│   ├── api/
-│   │   ├── routes.php
-│   │   ├── users.php
-│   │   ├── traffic.php
-│   │   └── rewards.php
-│   ├── init_db.php
-│   ├── utils/
-│   │   ├── Auth.php
-│   │   ├── RouteUtils.php
-│   │   └── TrafficUtils.php
-│   └── composer.json
-├── frontend/
-│   ├── public/
-│   │   ├── index.html
-│   │   ├── manifest.json
-│   │   └── favicon.ico
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── Planner.jsx
-│   │   │   └── Rewards.jsx
-│   │   ├── App.jsx
+frontend/
+│
+├── src/
+│   ├── actions/         # Redux action files
+│   │   ├── userActions.js
+│   │   ├── courseActions.js
+│   │   ├── rewardActions.js
+│   │
+│   ├── reducers/        # Redux reducers
+│   │   ├── userReducer.js
+│   │   ├── courseReducer.js
+│   │   ├── rewardReducer.js
+│   │
+│   ├── components/      # Reusable components
+│   │   ├── Dashboard.js
+│   │   ├── Planner.js
+│   │   ├── Rewards.js
+│   │   ├── FeaturesSection.js
+│   │   ├── PricingSection.js
+│   │   ├── Footer.js
+│   │
+│   ├── pages/           # Pages
+│   │   ├── HomePage.js
+│   │   ├── LoginPage.js
+│   │   ├── RegisterPage.js
+│   │   ├── CoursePage.js
+│   │   ├── RewardPage.js
+│   │   └── NotFoundPage.js
+│   │
+│   ├── styles/          # CSS files
 │   │   ├── App.css
-│   │   └── index.js
-│   └── package.json
-├── README.md
-├── .gitignore
-└── docker-compose.yml
+│   │   ├── Dashboard.css
+│   │   ├── Rewards.css
+│   │
+│   ├── store.js         # Redux store configuration
+│   ├── App.js           # Main app component
+│   ├── index.js         # Entry point
+│   └── utils/           # Utility files for APIs
+│       └── api.js       # Axios instance configuration
+
+backend/
+│
+├── api/
+│   ├── users.php        # Handles user authentication and registration
+│   ├── courses.php      # Fetches and manages course data
+│   ├── rewards.php      # Manages reward system APIs
+│   └── make_tables.php  # Contains SQL for creating all necessary tables
+│
+└── init_db.php          # Database connection
+
 
 
 php -S localhost:8000 -t api

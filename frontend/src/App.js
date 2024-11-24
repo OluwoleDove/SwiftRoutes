@@ -1,25 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import Planner from "./components/Planner";
-import Rewards from "./components/Rewards";
-import "./App.css"; // Importing CSS for styling
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import PlannerPage from "./pages/PlannerPage";
+import RewardsPage from "./pages/RewardsPage"
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <div className="App">
-        <header>
-          <h1>SwiftRoutes</h1>
-        </header>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/planner" element={<Planner />} />
-          <Route path="/rewards" element={<Rewards />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/planner" element={<PlannerPage />} />
+        <Route path="/rewards" element={<RewardsPage />} />
+      </Routes>
     </Router>
   );
-}
+};
 
 export default App;
