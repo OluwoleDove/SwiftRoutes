@@ -1,59 +1,77 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
+import axios from "axios";
 import "./MapComponent.css";
 
-mapboxgl.accessToken = "pk.eyJ1IjoidGhlZ2Vla21lIiwiYSI6ImNtM3p5aHAzdDIyN2EyanNjdHg3M3o1czMifQ.0Q7WgYRaWGkgcL5JT1CtAw"; // Replace with your Mapbox access token.
+mapboxgl.accessToken = "pk.eyJ1IjoidGhlZ2Vla21lIiwiYSI6ImNtM3p5aHAzdDIyN2EyanNjdHg3M3o1czMifQ.0Q7WgYRaWGkgcL5JT1CtAw";
 
 const MapComponent = ({ start, destination, routes }) => {
   const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [startCoords, setStartCoords] = useState(null);
+  const [destCoords, setDestCoords] = useState(null);
 
+  // Fetch coordinates for start and destination
+  useEffect(() => {
+    const fetchCoordinates = async () => {
+      try {
+        if (start) {
+          const startRes = await axios.get(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+              start
+            )}.json?access_token=${mapboxgl.accessToken}`
+          );
+          const startData = startRes.data.features[0]?.geometry.coordinates;
+          setStartCoords(startData);
+        }
+
+        if (destination) {
+          const destRes = await axios.get(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+              destination
+            )}.json?access_token=${mapboxgl.accessToken}`
+          );
+          const destData = destRes.data.features[0]?.geometry.coordinates;
+          setDestCoords(destData);
+        }
+      } catch (err) {
+        console.error("Error fetching coordinates:", err);
+      }
+    };
+
+    fetchCoordinates();
+  }, [start, destination]);
+
+  // Update map view when coordinates change
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    const map = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [-122.431297, 37.773972], // Default center (San Francisco)
-      zoom: 10,
-    });
-
-    if (start && destination) {
-      // Add markers for start and destination
-      new mapboxgl.Marker().setLngLat([-122.431297, 37.773972]).addTo(map); // Replace with start coords
-      new mapboxgl.Marker().setLngLat([-122.4194, 37.7749]).addTo(map); // Replace with destination coords
-
-      // Add a route line if routes exist
-      if (routes && routes.length > 0) {
-        const route = routes[0]; // Use the first route
-        map.on("load", () => {
-          map.addSource("route", {
-            type: "geojson",
-            data: {
-              type: "Feature",
-              properties: {},
-              geometry: route.geometry, // Replace with actual GeoJSON
-            },
-          });
-
-          map.addLayer({
-            id: "route",
-            type: "line",
-            source: "route",
-            layout: {
-              "line-join": "round",
-              "line-cap": "round",
-            },
-            paint: {
-              "line-color": "#3887be",
-              "line-width": 5,
-            },
-          });
-        });
-      }
+    if (!map.current) {
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [-122.431297, 37.773972], // Default center
+        zoom: 10,
+      });
     }
 
-    return () => map.remove();
-  }, [start, destination, routes]);
+    if (startCoords && destCoords) {
+      const bounds = new mapboxgl.LngLatBounds()
+        .extend(startCoords)
+        .extend(destCoords);
+
+      map.current.fitBounds(bounds, { padding: 50 });
+
+      // Add markers for start and destination
+      new mapboxgl.Marker({ color: "green" })
+        .setLngLat(startCoords)
+        .addTo(map.current);
+
+      new mapboxgl.Marker({ color: "red" })
+        .setLngLat(destCoords)
+        .addTo(map.current);
+    }
+  }, [startCoords, destCoords]);
 
   return <div className="map-container" ref={mapContainer}></div>;
 };
