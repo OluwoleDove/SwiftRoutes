@@ -10,22 +10,18 @@ const PlannerPage = () => {
       <main className="main-content">
         <div className="planner-container">
           <h1>Plan Your Journey with SwiftRoutes</h1>
-          <p>
-            Discover the best routes with our advanced trip planner. Choose the
-            fastest, cheapest, or most eco-friendly options tailored for you.
-          </p>
-          <img
-            src="https://via.placeholder.com/800x400"
-            alt="Planner illustration"
-            className="planner-image"
-          />
-          <div className="planner-steps">
-            <h2>How It Works:</h2>
-            <ul>
-              <li>Enter your start and destination locations.</li>
-              <li>Choose your preferred transportation mode(s).</li>
-              <li>Compare available routes and make your choice.</li>
-            </ul>
+          <div className="planner-content">
+            <img
+              src="/planner.jpg"
+              alt="Planner illustration"
+              className="planner-image"
+            />
+            <div className="planner-text">
+              <h2>How It Works:</h2>
+              <p>Enter your start and destination locations.</p>
+              <p>Choose your preferred transportation mode(s).</p>
+              <p>Compare available routes and make your choice.</p>
+            </div>
           </div>
         </div>
       </main>

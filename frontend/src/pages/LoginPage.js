@@ -1,7 +1,9 @@
-// pages/LoginPage.js
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"; // For the loading spinner
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../index.css"; // Optional CSS file for styling
@@ -29,24 +31,36 @@ const LoginPage = () => {
         <h1>Login to SwiftRoutes</h1>
         <form className="login-form" onSubmit={handleLogin}>
           {error && <p className="error-message">{error}</p>}
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="input-field"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="input-field"
-            required
-          />
+          <div className="input-group">
+            <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input-field"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <FontAwesomeIcon icon={faLock} className="input-icon" />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="input-field"
+              required
+            />
+          </div>
           <button type="submit" disabled={loading} className="login-button">
-            {loading ? "Logging in..." : "Login"}
+            {loading ? (
+              <>
+                <FontAwesomeIcon icon={faSpinner} spin /> Logging in...
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
         {userInfo && (

@@ -5,7 +5,7 @@ import "./Header.css";
 const Header = () => {
   return (
     <header className="header">
-      <h1>SwiftRoutes</h1>
+      <h1><img src="/logo.png"/></h1>
       <nav>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>

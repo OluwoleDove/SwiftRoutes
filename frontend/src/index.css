@@ -9,15 +9,14 @@ body {
 .header {
   background-color: #0066cc;
   color: #fff;
-  padding: 1rem 2rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.header img{
+  width: 3em;
 }
 
 .nav-links {
@@ -38,6 +37,132 @@ body {
 
 .search-section {
   margin: 2rem 0;
+}
+
+/* ------------------------------- */
+
+.info-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+figure {
+  margin: 0;
+  text-align: center;
+}
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+/********* Planner ***************/
+.planner-content {
+  display: flex;
+  align-items: center; /* Centers items vertically */
+  justify-content: center; /* Centers the content horizontally */
+  gap: 40px; /* Increased spacing for a balanced look */
+  margin-top: 40px; /* Adds space above the section */
+}
+
+.planner-image {
+  width: 500px; /* Large enough for emphasis */
+  height: auto; /* Maintains aspect ratio */
+  flex-shrink: 0; /* Prevents shrinking */
+  border-radius: 10px; /* Adds subtle rounding for a polished look */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+.planner-text {
+  max-width: 600px; /* Limits width for better readability */
+  text-align: left; /* Aligns text to the left */
+  font-size: 1.1rem; /* Slightly larger text for readability */
+  line-height: 1.6; /* Adds line spacing for comfort */
+}
+
+.planner-text h2 {
+  margin-top: 0;
+  margin-bottom: 20px; /* Space between the heading and paragraph */
+  font-size: 1.5rem; /* Larger font for emphasis */
+  color: #333; /* Neutral color for contrast */
+}
+
+.planner-text p {
+  margin-bottom: 15px; /* Adds spacing between paragraphs */
+}
+/*****************************************/
+.rewards-container {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto; /* Centers the content on the page */
+}
+
+.rewards-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #2d3748; /* Neutral dark color */
+}
+
+.rewards-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #4a5568; /* Subtle secondary color */
+  line-height: 1.6; /* Better readability */
+}
+
+.rewards-image {
+  width: 100%;
+  max-width: 800px; /* Limits the image size */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 10px;
+  margin: 30px auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds a soft shadow for depth */
+}
+
+.reward-tiers {
+  text-align: left; /* Aligns text to the left for better readability */
+  margin: 30px auto;
+  max-width: 800px; /* Limits the width for focus */
+}
+
+.reward-tiers h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2d3748; /* Matches heading styles */
+}
+
+.reward-tiers div {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #edf2f7; /* Light background for contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.reward-tiers div strong {
+  display: block;
+  font-size: 1.4rem;
+  color: #2c5282; /* Accentuates the tier names */
+  margin-bottom: 10px;
+}
+
+.reward-tiers div p {
+  font-size: 1.1rem;
+  color: #4a5568; /* Matches secondary text style */
+  line-height: 1.5;
 }
 
 /* styles/LoginPage.css */
@@ -64,11 +189,23 @@ body {
   gap: 10px;
 }
 
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.input-icon {
+  margin-right: 0.5rem;
+  color: #666;
+}
+
 .input-field {
-  padding: 10px;
+  flex: 1;
+  padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .login-button {

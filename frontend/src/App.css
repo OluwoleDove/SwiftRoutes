@@ -8,17 +8,6 @@ body {
   text-align: center;
 }
 
-header {
-  background-color: #2d3748;
-  color: white;
-  padding: 1rem;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2rem;
-}
-
 h2 {
   color: #2d3748;
 }

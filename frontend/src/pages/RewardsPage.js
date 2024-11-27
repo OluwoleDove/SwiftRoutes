@@ -15,24 +15,24 @@ const RewardsPage = () => {
             trip counts!
           </p>
           <img
-            src="https://via.placeholder.com/800x400"
+            src="/reward.jpg"
             alt="Rewards showcase"
             className="rewards-image"
           />
           <div className="reward-tiers">
-            <h2>Reward Tiers:</h2>
-            <ul>
-              <li>
-                <strong>Bronze:</strong> 100 points - Discounted ride fares.
-              </li>
-              <li>
-                <strong>Silver:</strong> 500 points - Free ride passes.
-              </li>
-              <li>
-                <strong>Gold:</strong> 1000 points - Exclusive merchandise and
-                perks.
-              </li>
-            </ul>
+            <h2>Reward Tiers</h2>
+            <div>
+              <strong>Bronze</strong>
+              <p>100 points - Discounted ride fares.</p>
+            </div>
+            <div>
+              <strong>Silver</strong>
+              <p>500 points - Free ride passes.</p>
+            </div>
+            <div>
+              <strong>Gold</strong>
+              <p>1000 points - Exclusive merchandise and perks.</p>
+            </div>
           </div>
         </div>
       </main>
