@@ -28,44 +28,46 @@ const LoginPage = () => {
     <div className="login-page">
       <Header />
       <main className="login-container">
-        <h1>Login to SwiftRoutes</h1>
-        <form className="login-form" onSubmit={handleLogin}>
-          {error && <p className="error-message">{error}</p>}
-          <div className="input-group">
-            <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input-field"
-              required
-            />
-          </div>
-          <div className="input-group">
-            <FontAwesomeIcon icon={faLock} className="input-icon" />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input-field"
-              required
-            />
-          </div>
-          <button type="submit" disabled={loading} className="login-button">
-            {loading ? (
-              <>
-                <FontAwesomeIcon icon={faSpinner} spin /> Logging in...
-              </>
-            ) : (
-              "Login"
-            )}
-          </button>
-        </form>
-        {userInfo && (
-          <p className="welcome-message">Welcome back, {userInfo.name}!</p>
-        )}
+        <div className="login-box">
+          <h1>Login to SwiftRoutes</h1>
+          <form className="login-form" onSubmit={handleLogin}>
+            {error && <p className="error-message">{error}</p>}
+            <div className="input-group">
+              <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input-field"
+                required
+              />
+            </div>
+            <div className="input-group">
+              <FontAwesomeIcon icon={faLock} className="input-icon" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input-field"
+                required
+              />
+            </div>
+            <button type="submit" disabled={loading} className="login-button">
+              {loading ? (
+                <>
+                  <FontAwesomeIcon icon={faSpinner} spin /> Logging in...
+                </>
+              ) : (
+                "Login"
+              )}
+            </button>
+          </form>
+          {userInfo && (
+            <p className="welcome-message">Welcome back, {userInfo.name}!</p>
+          )}
+        </div>
       </main>
       <Footer />
     </div>

@@ -191,6 +191,102 @@ figcaption {
   font-weight: bold;
 }
 
+/* --------------------------------------------------------- */
+/* Center the login page container */
+.login-page {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+}
+
+.login-container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Center the form elements */
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Style the form inputs */
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 35px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Style the button */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-button:disabled {
+  background-color: #ccc;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Welcome message styling */
+.welcome-message {
+  margin-top: 20px;
+  color: green;
+  font-size: 16px;
+}
+
+
 /* Footer */
 .footer {
   background-color: #2c3e50;
