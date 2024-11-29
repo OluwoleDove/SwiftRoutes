@@ -4,6 +4,7 @@ import { loginUser } from "../actions/userActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"; // For the loading spinner
+import { faGoogle, faFacebookF } from "@fortawesome/free-brands-svg-icons"; // Icons for social login
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../index.css"; // Optional CSS file for styling
@@ -22,6 +23,11 @@ const LoginPage = () => {
       return;
     }
     dispatch(loginUser(email, password));
+  };
+
+  const handleSocialLogin = (provider) => {
+    alert(`Login with ${provider} is not yet implemented.`);
+    // Implement API integration for social login here.
   };
 
   return (
@@ -64,6 +70,22 @@ const LoginPage = () => {
               )}
             </button>
           </form>
+
+          <div className="social-login">
+            <button
+              className="social-button google-button"
+              onClick={() => handleSocialLogin("Google")}
+            >
+              <FontAwesomeIcon icon={faGoogle} className="social-icon" /> Login with Google
+            </button>
+            <button
+              className="social-button facebook-button"
+              onClick={() => handleSocialLogin("Facebook")}
+            >
+              <FontAwesomeIcon icon={faFacebookF} className="social-icon" /> Login with Facebook
+            </button>
+          </div>
+
           {userInfo && (
             <p className="welcome-message">Welcome back, {userInfo.name}!</p>
           )}
